@@ -98,7 +98,7 @@ jobs:
       - name: Install Xvfb and ImageMagick
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb imagemagick x11-utils
+          sudo apt-get install -y xvfb imagemagick x11-utils libxkbcommon-x11
 
       - name: Build screenshot generator
         run: cargo build --example screenshot_generator --release
