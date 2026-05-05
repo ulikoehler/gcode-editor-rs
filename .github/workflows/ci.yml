@@ -83,36 +83,39 @@ jobs:
           file: ./cobertura.xml
           fail_ci_if_error: false
 
-  screenshots:
-    name: Generate Screenshots
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Install Rust toolchain
-        uses: actions-rust-lang/setup-rust-toolchain@v1
-        with:
-          toolchain: stable
-
-      - name: Install Xvfb and ImageMagick
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y xvfb imagemagick x11-utils libxkbcommon0 libxkbcommon-x11-0
-
-      - name: Build screenshot generator
-        run: cargo build --example screenshot_generator --release
-
-      - name: Generate screenshots
-        env:
-          LD_LIBRARY_PATH: /usr/lib/x86_64-linux-gnu
-        run: ./scripts/generate_screenshots.sh
-
-      - name: Upload screenshots as artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: screenshots
-          path: screenshots/
-          retention-days: 30
-        if: always()
+  # Screenshots disabled - X11 setup in CI is problematic
+  # TODO: Re-enable after finding a working X11 configuration for GitHub Actions
+  # The screenshot script works locally but requires complex X11/XKB setup in CI
+  # screenshots:
+  #   name: Generate Screenshots
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  # 
+  #     - name: Install Rust toolchain
+  #       uses: actions-rust-lang/setup-rust-toolchain@v1
+  #       with:
+  #         toolchain: stable
+  # 
+  #     - name: Install Xvfb and ImageMagick
+  #       run: |
+  #         sudo apt-get update
+  #         sudo apt-get install -y xvfb imagemagick x11-utils libxkbcommon0 libxkbcommon-x11-0
+  # 
+  #     - name: Build screenshot generator
+  #       run: cargo build --example screenshot_generator --release
+  # 
+  #     - name: Generate screenshots
+  #       env:
+  #         LD_LIBRARY_PATH: /usr/lib/x86_64-linux-gnu
+  #       run: ./scripts/generate_screenshots.sh
+  # 
+  #     - name: Upload screenshots as artifacts
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: screenshots
+  #         path: screenshots/
+  #         retention-days: 30
+  #       if: always()
 
