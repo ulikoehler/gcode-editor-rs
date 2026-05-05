@@ -44,9 +44,9 @@ echo "Building screenshot_generator example..."
 cd "$PROJECT_DIR"
 cargo build --example screenshot_generator --release
 
-# Start Xvfb
+# Start Xvfb with software rendering to avoid GPU issues
 echo "Starting Xvfb on display $XVFB_DISPLAY..."
-Xvfb "$XVFB_DISPLAY" -screen 0 "${XVFB_WIDTH}x${XVFB_HEIGHT}x${XVFB_DEPTH}" &
+LIBGL_ALWAYS_SOFTWARE=1 Xvfb "$XVFB_DISPLAY" -screen 0 "${XVFB_WIDTH}x${XVFB_HEIGHT}x${XVFB_DEPTH}" -ac +render -noreset &
 XVFB_PID=$!
 
 # Wait for Xvfb to start

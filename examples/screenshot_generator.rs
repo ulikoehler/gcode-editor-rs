@@ -1,5 +1,4 @@
 use eframe::egui;
-use eframe::Theme;
 use gcode_editor::{show_editor, EditorEvent, EditorState, SyntaxColors};
 use std::env;
 use std::fs;
@@ -44,8 +43,8 @@ impl ScreenshotApp {
 }
 
 impl eframe::App for ScreenshotApp {
-    fn ui(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        egui::CentralPanel::default().show(ctx, |ui| {
+    fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
+        egui::CentralPanel::default().show_inside(ui, |ui| {
             ui.heading(&self.window_title);
             let events = show_editor(ui, &mut self.content, &mut self.state, &self.colors, 14.0);
             for evt in events {
@@ -64,7 +63,7 @@ impl eframe::App for ScreenshotApp {
         });
 
         // Request continuous repaint to ensure the window is fully rendered
-        ctx.request_repaint();
+        ui.ctx().request_repaint();
     }
 }
 
