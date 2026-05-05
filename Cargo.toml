@@ -1,0 +1,21 @@
+[package]
+name = "gcode-editor"
+version = "1.0.0"
+edition = "2021"
+
+[lib]
+name = "gcode_editor"
+path = "src/lib.rs"
+
+[dependencies]
+egui = "0.34"
+eframe = { version = "0.34", optional = true }
+
+[dev-dependencies]
+eframe = "0.34"
+console_error_panic_hook = "0.1"
+wasm-bindgen-futures = "0.4"
+
+[features]
+default = []
+with_eframe = ["eframe"]
