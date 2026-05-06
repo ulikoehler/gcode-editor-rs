@@ -13,6 +13,8 @@ eframe = { version = "0.34", optional = true }
 
 [dev-dependencies]
 eframe = "0.34"
+egui_kittest = { version = "0.34", features = ["wgpu", "snapshot"] }
+image = "0.25"
 console_error_panic_hook = "0.1"
 wasm-bindgen-futures = "0.4"
 
