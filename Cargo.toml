@@ -1,5 +1,5 @@
 [package]
-name = "gcode-editor"
+name = "gcode_editor"
 version = "1.0.0"
 edition = "2021"
 description = "A G-code highlighter and editor widget for egui"
