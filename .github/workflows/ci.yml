@@ -95,7 +95,14 @@ jobs:
         with:
           toolchain: stable
 
+      - name: Install Vulkan (for wgpu software fallback)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y vulkan-tools mesa-vulkan-drivers
+
       - name: Generate screenshots
+        env:
+          WGPU_BACKEND: vulkan
         run: ./scripts/generate_screenshots.sh
 
       - name: Upload screenshots as artifacts
