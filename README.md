@@ -228,7 +228,3 @@ This script:
 ## Contribution
 
 Contributions, bug reports and feature requests welcome. If you add new token types or change tokenizer behavior, please add unit tests for tokenization and colors.
-
----
-
-If you'd like, I can add a short interactive controls panel to the example (toggle highlighting, pick axis colors with a color picker, open example files) — say which controls you want and I'll add them. 
